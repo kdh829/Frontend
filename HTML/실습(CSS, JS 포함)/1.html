@@ -10,27 +10,53 @@
       text-align: center;}
   h1{ font-size: 100px;
       text-align: center;}
+      h1 {
+        font-size: 45px;
+        text-align: center;
+        border-bottom: 1px solid gray;
+        margin: 0px;
+        padding: 20px;
+      }
+      #grid ol {
+        border-right: 1px solid gray;
+        margin: 0px;
+        width: 100px;
+        padding: 33px;
+      }
+      body {
+        margin: 0px;
+      }
+      #grid {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+      }
+      @media(max-width: 800px) {
+        #grid {
+          display: block;
+        }
+        #grid ol {
+          border-right: none;
+        }
+        h1 {
+          border-bottom: none;
+        }
+      }
 </style>
 </head >
 
 <body>
   <h1><a href="index.html" target="_blank"> WEB </a></h1>
+  <div id="grid">
 <ol>
   <li><a href="1.html" target="_blank">HTML</a></li> <!-- 들여쓰기가 가능 -->
   <li><a href="2.html" target="_blank">CSS</a></li>
   <li><a href="3.html" target="_blank">JAVASCRIPT</a></li>
 </ol>
-<ul>
-  <li>KDH</li>
-  <li>k881</li>
-  <li>Dohyung</li>
-</ul>
-</body>
-
-<body>
+<div id="article">
 <p>
-<h2>HTML이란 무엇인가?</h2>
-<p><a href="https://html.spec.whatwg.org/multipage/" target="_blank" title="HTML5 specification">HTML란</a></p>
+  <a href="https://html.spec.whatwg.org/multipage/" target="_blank" title="HTML5 specification"><h2>HTML이란 무엇인가?</h2>
+  </a>
+</p>
 HTML stands for Hyper Text Markup Language.<br>
 HTML is the standard markup language for creating Web pages.<br>
 HTML describes the structure of a Web page.<br>
@@ -46,6 +72,8 @@ HTML elements tell the browser how to display the content.
   each serving a specific purpose in organizing and displaying content.<br>
   HTML is often used in conjunction with CSS (Cascading Style Sheets) and JavaScript to create fully functional and aesthetically pleasing web pages.<br>
 </p>
+</div>
+</div>
 </body>
 
 <table>
