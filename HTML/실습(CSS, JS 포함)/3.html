@@ -9,6 +9,32 @@
 
 <body>
   <h1><a href="index.html" target="_blank"> WEB </a></h1>
+  <input type="button" value="day" onclick="">
+  <input type="button" value="night" onclick="">
+  <input id="night_day" type="button" value="night" onclick="
+   if(document.querySelector('#night_day').value === 'night'){
+     document.querySelector('body').style.backgroundColor = 'black';
+     document.querySelector('body').style.color = 'white';
+     document.querySelector('#night_day').value = 'day';
+
+     var alist = document.querySelectorAll('a');
+     var i = 0;
+     while(i < alist.length){
+         alist[i].style.color = 'powderblue';
+         i = i + 1;}
+  } else {
+     document.querySelector('body').style.backgroundColor = 'white';
+     document.querySelector('body').style.color = 'black';
+     document.querySelector('#night_day').value = 'night';
+
+     var alist = document.querySelectorAll('a');
+     var i = 0;
+     while(i < alist.length){
+         alist[i].style.color = 'blue';
+         i = i + 1;}
+  }
+
+   ">
   <div id="grid">
 <ol>
   <li><a href="1.html" target="_blank">HTML</a></li> <!-- 들여쓰기가 가능 -->

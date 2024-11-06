@@ -1,0 +1,98 @@
+///// Javascript 기본
+
+1. 반복문
+: 스타일로 css 설정을 하기 위해서 여러 개의 css 문을 쓰는 것보다 반복문으로 수행하는 것이 효율적일 수 있다.
+
+( ex.
+var alist = document.querySelectorAll('a');
+var i =0;
+while( i < alist.length ) {
+alist[i].style.color = 'powder';
+console.log(alist[i]);
+i = i + 1;
+})
+
+1-1) 배열
+: 반복문을 하기 앞서 중요한 재료로 '배열'이 있다. '배열'은 늘어난 살림살이를 정리정돈해서 우리의 뇌가 처음처럼
+단순하게 느낄 수 있도록 하듯이 '수납함'의 역할을 하는 것이다. 프로그래밍 관념으로 본다면 다음과 같이 정의내릴 수 있다.
+'배열'(array)은 데이터 중에서 서로 연관된 데이터를 잘 정리 정돈해서 담아두는 일종의 수납상자이다.
+배열 안의 각 항목들은 '원소(element)'라고 부른다.
+
+( ex.
+  <body>
+    <h1>Array</h1>
+    <h2>Syntax</h2>
+    <script>
+      var coworkers = ["egoing", "leezche"];
+    </script>
+    <h2>get</h2>
+    <script>
+      document.write(coworkers[0]); | [0]이나 [1]은 인덱스이다.
+      document.write(coworkers[1]);
+    </script>
+  </body> ) 
+
+( 출력 화면 )
+egoingleezche
+
+1-1-1) 배열 안에 데이터 개수 세는 방법
+: 배열 안에 몇 개가 들어있는지 확인하고 싶으면 document.write(coworkers.length); 'length' 메소드로 확인할 수 있다.
+
+1-1-2) 배열 안에 데이터 추가하는 방법
+: 선언한 배열에 어떤 데이터를 추가하겠다고 알려줘야 한다 -> coworkers.push('wonder', 'place'); | push 메소드를 활용하면 된다.
+
+1-2) 반복문
+: 'while'이 반복문의 키워드이다. 내부 조건(if 문)을 보고 불린을 판단하여 중괄호 안의 코드를 실행할지를 본다.
+다시 돌아와서 또 사실 여부를 판별하고 조건에 따라 마지막까지 수행한다.
+즉, 순서대로 실행되는 프로그램의 흐름을 제어하는 제어문이라고 할 수 있는 것이다.
+
+( ex.
+  <body>
+    <script>
+      document.write('<li>1</li>');
+      var i = 0;
+      while(i < 3){
+        document.write('<li>2</li>');
+        document.write('<li>3</li>');
+
+        i = i + 1;
+      }
+      document.write('<li>4</li>');
+    </script>
+  </body> )
+
+( ex.
+   <body>
+    <h1>Loop & Array</h1>
+    <h2>Co workers</h2>
+    <script>
+      var coworkers = ['egoing', 'leezche', 'duru', 'taeho'];
+      coworkers.push('man');
+    </script>
+      <ul>
+      <script>
+      var i = 0;
+      while (i < coworkers.length) { -> 배열 내 원소 수만큼 Loop를 돌린다.
+       document.write('<li><a href="http://"a.com/' + coworkers[i] + '">"' + coworkers[i] + '</a></li>'); 
+       -> + 로 구분해줘야지 안그러면 coworkers[i]로 출력된다.
+        i = i + 1;
+      }
+      </script>
+      </ul>
+  </body> )
+
+1-3) 배열과 반복문의 활용
+: 만든 웹 페이지에 사용자 도구 창을 열고 링크가 걸린 텍스트들에 대해서 배경(검정, 하양)따라 다른 색으로 바꿔주려고 한다.
+Javascript get element by css selector multiple을 구글링 해보니, document.querySelector는 맨 처음 선언된 하나의 태그에 대해서만
+가져오지만 대신 모든 링크 텍스트에 대한 적용으로 document.querySelectorAll을 쓰면 된다고 나온다.
+( ex.
+     var alist = document.querySelectorAll('a'); | 'a'태그 즉, 링크가 걸린 텍스트들을 체크한다.
+     var i = 0;
+     while(i < alist.length){
+         alist[i].style.color = 'blue';
+         console.log(alist[i]);
+         i = i + 1;}
+  })
+
++) 추가 설명
+: 만약 웹 브라우저의 사용자 도구에서 콘솔을 활용해 뭔가 출력하고 싶다? -> console.log(alist[i]); 처럼 작성해주면 된다.

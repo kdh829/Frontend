@@ -41,11 +41,22 @@
           border-bottom: none;
         }
       }
+      #js{
+        font-weight: bold;
+        color: red;
+      }
 </style>
 </head >
 
 <body>
-  <h1><a href="index.html" target="_blank"> WEB </a></h1>
+  <h1><span id="js"><a href="index.html" target="_blank"> WEB </a></span></h1>
+  <input type="button" value="night" onclick="alert('밤이 되었습니다.');
+  document.querySelector('body').style.backgroundColor = 'black';
+  document.querySelector('body').style.color = 'white';"/>
+  <input type="button" value="day" onclick="alert('낮이 되었습니다.');
+  document.querySelector('body').style.backgroundColor = 'white';
+  document.querySelector('body').style.color = 'black'"/>
+
   <div id="grid">
 <ol>
   <li><a href="1.html" target="_blank">HTML</a></li> <!-- 들여쓰기가 가능 -->
@@ -54,9 +65,8 @@
 </ol>
 <div id="article">
 <p>
-  <a href="https://html.spec.whatwg.org/multipage/" target="_blank" title="HTML5 specification"><h2>HTML이란 무엇인가?</h2>
-  </a>
-</p>
+  <a href="https://html.spec.whatwg.org/multipage/" target="_blank" title="HTML5 specification"><h2 style="background-color: coral; color: powderblue">HTML이란 무엇인가?</h2>
+  </a></p>
 HTML stands for Hyper Text Markup Language.<br>
 HTML is the standard markup language for creating Web pages.<br>
 HTML describes the structure of a Web page.<br>
@@ -74,20 +84,16 @@ HTML elements tell the browser how to display the content.
 </p>
 </div>
 </div>
-</body>
 
-<table>
-  <tr>
-    <td>head</td>
-    <td>98.1%</td>
-  </tr>
-  <tr>
-    <td>body</td>
-    <td>97.9%</td>
-  </tr>
-  <tr>
-    <td>html</td>
-    <td>97.9%</td>
-  </tr>
-</table>
-</html>
+<input id="night_day" type="button" value="night" onclick="
+if(document.querySelector('#night_day').value === 'night'){
+  document.querySelector('body').style.backgroundColor = 'black';
+  document.querySelector('body').style.color = 'white';
+  document.querySelector('#night_day').value = 'day';
+} else {
+  document.querySelector('body').style.backgroundColor = 'white';
+  document.querySelector('body').style.color = 'black';
+  document.querySelector('#night_day').value = 'night';
+}
+">
+</body>

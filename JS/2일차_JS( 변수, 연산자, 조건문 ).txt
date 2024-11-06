@@ -1,0 +1,118 @@
+///// Javascript 기본
+
+1. 변수와 대입 연산자
+
+1-1) 변수 : 바뀔 수 있는 값.
+' = '이라는 대입 연산자로 우항의 값을 좌항으로 보낼 수 있다.
+x 라는 변수는 우항에 1, 2, 3 등 여러 숫자 값을 줌에 따라 값을 가지지만,
+
+1 = 3. 이런 것은 1은 쭉 1이기에 3이 될 수 없다. 이런 것을 '상수'라고 한다.
+
+
+2. JS 사용해서 CSS 사용해보기
+
+2-1) <body> 태그에서 STYLE 속성을 통해 CSS를 입히고자 한다. 이때 웹 브라우저가
+CSS를 <body>에서 실행하겠다는 걸 알아야하기 때문에 이때 자바스크립트를 이용해서
+알려줄 것이다. 
+
+
+3. 제어할 태그 선택하기
+
+3-1) CSS에서 사용하는 style 태그를 자바스크립트에서는 속성으로 구현한다.
+즉, CSS에서는 헤드에서 선택자 내 CSS 코드를 구현하고 자바스크립트에는 속성으로서 style을 활용하는데
+이때 어떤 태그로 이동하겠다라고 웹 브라우저에게 알려주는 과정이 필요하다. 이때 사용하는 자바스크립트 
+코드는 다음과 같다.
+
+- document.querySelector('body') -> body 태그를 사용하겠다라는 의미
+
+- document.querySelector('body').style. ~이후에 코드는 직접 구글링으로 해봐야 한다.
+  똑같은 background-color라도 CSS 코드와 JS 코드는 다른 형태를 띄고있기 때문이다.
+
+< style="document.querySelector('body').style.backgroundColor = 'Red'; 
+	     document.querySelector('body').style.color = 'White'">
+
+4. 조건문
+
+4-1) 토글( Toggle )
+: 예시로 야간 모드에서 버튼을 클릭하면 주간 모드가 되고, 주간 모드에서 버튼을 클릭하면 야간 모드가 되도록 한다.
+. 즉, 하나의 흐름으로 프로그램이 구동되고 흐름 자체에 따라 받아드리는 것이 아닌, A면 B로, B면 A로와 같이
+조건에 따라 변화를 주는 개념이다. 
+
+ex) <input id="night_day" type="button" value="night" onclick="
+ if(document.querySelector('#night_day').value === 'night'){
+  document.querySelector('body').style.backgroundColor = 'black';
+  document.querySelector('body').style.color = 'white';
+  document.querySelector('#night_day').value = 'day';
+} else {
+   document.querySelector('body').style.backgroundColor = 'white';
+   document.querySelector('body').style.color = 'black';
+   document.querySelector('#night_day').value = 'night';
+}
+">
+
+4-2) '===' : <script> 내의 자바스크립트 코드로 작성한 === 연산자 내용을 본다고 치자.
+연산자 '===' 왼쪽과 오른쪽 각각에 서로 같은지를 비교해서 True / False 값을 Return 해주는 문법이다.
+
+4-3) boolean : 위에서 돌려준 True와 False의 값을 통틀어서 boolean( 불리언 )이라고 한다.
+
+4-4) 조건문 : if 조건으로 불리언을 쓰면, 두 개의 버튼 각각의 기능을 하나로 합칠 수 있게 된다.
+
+( ex.   
+<input id="night_day" type="button" value="night" onclick="
+   if(document.querySelector('#night_day').value === 'night'){    |night이면 true(하단), 이외 day면 false(else 문) 실행.
+     document.querySelector('body').style.backgroundColor = 'black';
+     document.querySelector('body').style.color = 'white';
+     document.querySelector('#night_day').value = 'day';
+  } else {
+     document.querySelector('body').style.backgroundColor = 'white';
+     document.querySelector('body').style.color = 'black';
+     document.querySelector('#night_day').value = 'night';          
+  }
+   "> 
+)
+
+
+5. 리팩터링( 중복 제거 )
+: re(다시) + 팩토리(공장). 즉, 공장으로 다시 보내서 개선하고 가져온다라는 느낌으로 보면 된다.
+동작하는 것은 그대로 두고 코드 자체를 효율적으로 만들어서 코드의 가독성, 유지보수의 용이성, 중복 코드 감소 등의
+효과를 내는 것이 목적이다.
+
+5-1) this
+: 4-4의 조건문 예문을 웹 페이지 하단에도 동일하게 생성해서 같은 버튼을 여러 개 만든다고 치자. 만약, 이를 극단적으로
+1억 개의 웹 페이지에 동일하게 적용한다고 하면 id를 모두 바꿔줘야 다른 문으로 인식한다. 이렇게 하지 않으면, 
+맨위 상단의 버튼만이 바뀌게 되고 적용되기 때문이다. 이를 보완하기 위해서 현재 코드문이라는 자체만 인식해서
+고유의 기능을 사용하도록 하는 문법이 this이다.
+
+( ex.
+<input type="button" value="night" onclick="
+   if(this.value === 'night'){    |night이면 true(하단), 이외 day면 false(else 문) 실행.
+     document.querySelector.style.backgroundColor = 'black';
+     document.querySelector('body').style.color = 'white';
+     this.value = 'day';
+  } else {
+     document.querySelector('body').style.backgroundColor = 'white';
+     document.querySelector('body').style.color = 'black';
+     this.value = 'night';          
+  }
+   "> 
+)
+
+5-2) 변수 선언
+: 여기서 또 중복되는 문장이 보인다. document.querySelector('body')라는 문장인데 다음과 같이 변수로 재활용할 수 있다.
+
+( ex.
+<input type="button" value="night" onclick="
+   var target = document.querySelector('body'); | * 여기 *
+   if(this.value === 'night'){    |night이면 true(하단), 이외 day면 false(else 문) 실행.
+     target.style.backgroundColor = 'black';
+     target.style.color = 'white';
+     this.value = 'day';
+  } else {
+     target.style.backgroundColor = 'white';
+     target.style.color = 'black';
+     this.value = 'night';          
+  }
+   "> 
+) -> 이렇게 축약할 수 있다.
+
+
