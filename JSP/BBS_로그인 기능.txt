@@ -1,0 +1,22 @@
+< 해석집 >
+
+1. scope="page" 
+-> 현재 페이지에서만 활용하겠다.
+
+2. <% %> 
+-> 여기서부터 JAVA를 활용하겠다.
+
+3. new ~
+-> 인스턴스 생성 (ex. UserDAO userDAO = new UserDAO( ))
+
+4. script.println();
+-> 출력 구문
+
+5. history.back()
+-> 뒤로가기
+
+6. location.href = 'main.jsp'
+-> 해당 위치로 이동하겠다.
+
+7. jar 임포트하는 행위
+-> mysql 드라이버를 사용하겠다는 의미

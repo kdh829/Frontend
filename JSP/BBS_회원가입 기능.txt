@@ -1,0 +1,21 @@
+///// 해석
+
+1. <jsp:setProperty name="user" property="userEmail"/>
+: 맨 상단에 인코딩 방식 지정하고 입력해주는 java 언어이다. user라는 DB의 구성 요소. 즉, 필드 컬럼을 쓰겠다고 설정해주는 것이다.
+
+2., PrintWriter script = response.getWriter();
+: 응답 신호로서 하나의 스크립트 문장을 보내주겠다라는 뜻이다. 
+클라이언트로부터 Servlet( 즉, 어떤 특정 사용자 동작의 결과로 요청(Request)을 파악하고 응답(Response)을 전달)한다.
+Servlet으로 들어온 요청을 텍스트( html ) 형태로 응답을 보내려면 응답으로 내보낼 출력 스트림을 얻어내야 함.
+
+			script.println("<script>"); // 스크립트 문장을 유동적으로 사용하겠다. 하단과 같이 
+			script.println("alert('입력이 안 된 사항이 있습니다.')");
+			script.println("history.back()");
+			script.println("</script>");
+
+이것이 그 예이다. 오류 발생 시에 어떤 오류 메시지를 출력하고 이전 화면으로 돌아가겠다는 걸 의미.
+JAVA 언어로 유동적으로 쓸 수 있다( ex. 웹 페이지 이동 등 )
+
+3. int result = userDAO.join(user)
+: user라는 인스턴스가 Join 함수를 사용하겠다는 매개로 들어간 것
+

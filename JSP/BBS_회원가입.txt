@@ -1,0 +1,42 @@
+// <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 에 대한 해석
+
+1. " "
+-> 문서의 메타데이터를 설정하는 태그 중 하나.
+
+1-1) <meta> 태그 : HTML 문서의 메타데이터를 정의하는데 사용. 웹페이지에 대한 정보를 의미
+1-2) http-equiv 속성 : HTTP 헤더와 유사한 메타데이터를 설정할 때 사용된다. 여기서는 'Content-Type'이라는 HTTP 헤더를 설정하고 있다.
+1-3) Content-Type : 문서의 콘텐츠 유형을 지정한다. 여기서는 'text/html'로 설정되어 있어서 HTML 형식임을 나타낸다.
+1-4) charset : 인코딩 방식 지정
+
+
+
+// <button type="button" class="navbar-toggle collapsed"
+//  data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+//  aria-expanded="false"> 에 대한 해석
+
+2-1) 'class="navbar-toggle collapsed" : 버튼에 CSS 클래스를 지정한다. 'navbar-toggle' 클래스는 버튼이 내비게이션바를 토글( 열고 닫기 )
+하는 역할을 한다는 것을 나타내고,, 'collapsed' 클래스는 기본적으로 버튼이 닫힌 상태를 나타낸다.
+
+2-2) 'data-toggle="collapse"' : 버튼이 클릭될 때, 어떤 동작을 할지를 지정한다. 'collapse' 동작을 지정하여, 이 버튼을 클릭하면 특정 요소를
+열거나 닫는다.
+
+2-3) 'data-target="#bs-example-navbar-collapse-1' : 버튼이 클릭될 때 영향받을 요소를 지정한다. ID가 'bs-example-navbar-collapse-1' 인
+요소를 대상으로 한다. 즉, 이 버튼을 클릭하면 이 ID를 가진 요소가 열리거나 닫힌다.
+
+2-4) 'aria-expanded="false" : 접근성 관련 속성으로, 현재 버튼이 열려있는지 닫혀있는지를 나타낸다. "false"는 기본적으로 닫혀있음을 의미.
+
+2-5) + aria-haspopup="true" : 해당 요소가 팝업을 트리거할 수 있다는 것을 사용자에게 알려주는 속성이다. 
+2-5-1) true : 해당 요소가 팝업을 트리거할 수 있음을 의미
+2-5-2) false : 해당 요소가 팝업을 트리거할 수 없음을 의미
+2-5-3) menu , listbox, tree, grid, dialog : 각각에 트리거할 수 있음을 의미
+
+2-5-4) <span> :  <div>와 같이 묶음처리 태그이다. 하지만 <div>는 블록단위라면 <span>은 인라인 요소들을 하나로 묶을 때 사용한다.
+또한, class나 id처럼 전역 속성과 함께 사용해서 스타일링할 수 있다.
+
+// 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+3. JQuery라는 라이브러리를 쓰겠다는 의미
+
+3-1) JQuery란? : 자바스크립트의 가장 대표적인 라이브러리 언어이다. 일반 JS에서 볼 수 없는 다양한 효과들을 함수로 가져올 수 있다.
+3-2) 여러 방법으로 Import 할 수 있는데, 여기서는 다운받지 않고 직접 링크로 연결해준 것이므로 'CDN 호스트 링크 방식'이라고 한다.
+3-3) + http://code.jquery.com/jquery-latest.js 로 작성하면 가장 최신버전으로 자동 연동 됨
