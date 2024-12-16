@@ -1,0 +1,87 @@
+///// 해석
+
+1. DELETE 기능 = UPDATE DB SET bbsAvailable = 0 WHERE bbsID = ?
+: 1인 것만 표시할 수 있도록 했기 때문에, bbsAvailable을 0으로 변환해주는 것 만으로도 '삭제' 처럼 기능할 수 있다.
+
+2. BbsDAO에서 '수정', '삭제' 기능을 위해 DB에 접근하는 로직이 포함된 인스턴스를 선언했다.
+
+	public int update(int bbsID, String bbsTitle, String bbsContent) {
+		String SQL = "UPDATE BBS SET bbsTitle = ?, bbsContent = ? WHERE bbsID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, bbsTitle);
+			pstmt.setString(2, bbsContent); 
+			pstmt.setInt(3, bbsID);			
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB 오류	
+	}
+	
+	public int delete(int bbsID) {
+		String SQL = "UPDATE BBS SET bbsAvailable = 0 WHERE bbsID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB 오류
+	}
+
+2-1) public int update(int bbsID, String bbsTitle, String bbsContent) 
+: SQL 쿼리 실행에 성공하면 행의 개수를, 실패하면 -1을 반환하는 '정수형' 인스턴스임
+
+2-2) PreparedStatement pstmt = conn.PrepareStatement(SQL);
+: ABAP의 Itab 처럼, SQL 실행문을 안전하게 바인딩하여 활용된다.
+
+2-3) return -1;
+: 성공하면 행의 수를 반환, 실패하면 -1을 반환하게 하여 오류를 발생시킴
+
+2-4) '삭제' 기능은 bbsAvailable을 0으로 반환하여 조건문에서 걸러지도록 구현했다.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+3. '삭제'와 '수정' 버튼 구현
+ 	    <%
+    	    	if(userID != null && userID.equals(bbs.getUserID())){
+    	    %>		
+    	    	<a href="update.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">수정</a>
+    	    	<a onClick="return confirm('정말로 삭제하시겠습니까?')" href="deleteAction.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">삭제</a>    	    
+    	    <%
+    	    	}
+    	    %>
+
+3-1) if(userID != null && userID.equals(bbs.getUserID()){
+: userID가 존재하는데 게시판 데이터의 userID와 같을 때, '삭제' '수정' 버튼을 활성화 한다.
+
+3-2) <a onClick="return confirm('정말로 삭제하시겠습니까?)" href="deleteAction.jsp?bbsID=<% bbsID %>" class="btn btn-primary"> 삭제</a>
+: '삭제' 버튼을 클릭하면( 클릭 이벤트 발생 ), '경고성 메시지 표시'하도록 함 ( Onclick return confirm( ' ') : 지정된 문자열과 '예/아니오' 버튼이 뜨는 자바스크립트 함수임 )
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+4. 
+		Bbs bbs = new BbsDAO().getBbs(bbsID);
+		if (!userID.equals(bbs.getUserID())){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('권한이 없습니다.')"); 
+			script.println("location.href = 'bbs.jsp'");
+			script.println("</script>"); 						
+		}
+
+: 지정한 게시판 글의 작성 UserID가 현재 나의 UserID와 같지 않으면, '권한이 없습니다.' 라는 메시지를 출력한다.
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+5. <form method="post" action="updateAction.jsp?bbsID=<%= bbsID %>">
+
+5-1) <form> : HTML 폼을 시작하는 태그. 이것으로 사용자가 입력한 데이터를 서버로 전송할 수 있다.
+5-2) 'method="post" : POST 방식으로 데이터를 전송하도록 지정한 부분
+5-3) action="updateAction.jsp?bbsID=<%= bbsID %> : 이 action 속성은 폼 데이터를 제출할 URL을 지정한다.
+<%= bbsID %>는 서버측에 bbsID를 동적으로 할당하기 위해서 삽입하는 jsp 스크립트 부분이다.
+
+5-4) bbsID = Integer.parseInt(request.getParameter("bbsID")); : bbs 패키지를 Import 하지 않았을 때, 직접 매개변수를 요청하는 것임
+. 정수로 변환하여 사용하겠다는 의미. 
