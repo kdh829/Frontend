@@ -1,0 +1,47 @@
+///// 해석
+
+1. <div> <p> <span> 차이점
+
+1-1) <div> : 각 영역의 세션을 구분 정의한다. Layout 구조 틀을 만들고 CSS를 통해서 위치 및 Layer을 구분 등 HTML 요소의 컨테이너 역할
+1-2) <p> : 문단 텍스트 절을 기재할 때 사용된다. div랑 거의 같다고 보는데, <div>는 세션 나누기가 목적, <p>는 글자 표현이 목적이다.
+1-3) <span> : 일반적으로 텍스트에 색, 크기, 좌우간격을 조절하는데 사용된다. ( 인라인 요소들을 하나로 묶을 때 사용 )
+
+1-4) HTML 속성 ( carousel ) : '사진첩'이라고 보면 된다.
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+2. 
+    	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    		<ol class="carousel-indicators">
+    			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    			<li data-target="#myCarousel" data-slide-to="1"></li>
+    			<li data-target="#myCarousel" data-slide-to="2"></li>
+    		</ol>
+    		<div class="carousel-inner">
+    			<div class="item active">
+    				<img src="images/1.jpg">
+    			</div>
+    			<div class="item">
+    				<img src="images/2.jpg">
+    			</div>
+    			<div class="item">
+    				<img src="images/3.jpg">
+    			</div>
+    		</div>
+    		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    			<span class="glyphicon glyphicon-chevron-left"></span>
+    		</a>
+    		<a class="right carousel-control" href="#myCarousel" data-slide="next">
+    			<span class="glyphicon glyphicon-chevron-right"></span>
+    		</a> 
+    	</div>
+
+: 이 부분은 Carousel의 컨테이너이다. 'ID="myCarousel"은 이 캐러셀의 고유 식별자이다. 'class="carousel slide'는 부트스트랩의
+캐러셀 스타일과 기능을 적용하기 위한 클래스이다. 'data-ride="carousel"은 페이지가 로드될 때, 자동으로 슬라이드가 시작되도록 한다.
+
+2-1) <ol class="carousel-indicators"> : 슬라이드의 위치를 나타내는 작은 점(인디케이터)를 정의한다.
+
+2-2) <a class="left carousel-control" href="#myCarousel" data-slide="prev"> : 이전 슬라이드 이동 버튼 왼쪽 방향 버튼 스타일을 적용한다.
+2-3) <a class="right carousel-control" href="#myCarousel" data-slide="next"> : 다음 슬라이드 이동 버튼 오른쪽 방향 버튼 스타일을 적용
+
+: 이 코드는 Bootstrap의 기본적인 캐러셀 기능을 사용하여 이미지 슬라이더를 구현한 예시이다. 이를 통해 사용자는 이미지 슬라이드를 자동으로 보거나, 인디케이터나 컨트롤 버튼을 사용하여 수동으로 슬라이드를 전환할 수 있다.
